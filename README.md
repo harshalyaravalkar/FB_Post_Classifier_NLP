@@ -56,4 +56,10 @@ The script will:
 You can modify the configuration for the Google Sheets integration and classification parameters in the script. Ensure that you specify the correct:
 
 - Google Sheets IDs and ranges for input and output data.
-- Paths to your credentials.json for Google API authentication.
+- Paths to your "credentials.json" for Google API authentication.
+
+## How It Works
+
+1. **Google Sheets Integration**: The script uses the Google Sheets API to pull data from a Google Sheet containing Facebook posts.
+2. **Classification**: Using a Transformer model (DistilBERT), the text of each post is classified as either a Lead or Other Content.
+3. **Appending Results**: The identified leads are appended to another Google Sheet for easy review and use.
