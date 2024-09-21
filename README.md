@@ -51,3 +51,9 @@ The script will:
 1. Fetch Facebook post data from a specified Google Sheet.
 2. Classify posts into Leads and Other Content using a pre-trained DistilBERT model.
 3. Append the filtered leads into another Google Sheet.
+
+## Configuration
+You can modify the configuration for the Google Sheets integration and classification parameters in the script. Ensure that you specify the correct:
+
+- Google Sheets IDs and ranges for input and output data.
+- Paths to your credentials.json for Google API authentication.
