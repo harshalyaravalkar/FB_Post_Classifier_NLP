@@ -41,6 +41,12 @@ To get started with the project, follow these steps:
 
 Note: I haven't put the API credentials I used as they get disabled when posted on public repositories.
 
+## Model File
+Due to file size limitations, the trained model is hosted on Google Drive. You can download it [here](https://drive.google.com/drive/folders/1I2ULcdcOv2-7HmrtC4vJ4USKtVUDubx7?usp=drive_link).
+
+After downloading, place the file in the same directory as the py file.
+
+
 ## Usage
 Once the setup is complete, you can run the script to classify Facebook posts:
     
