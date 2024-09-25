@@ -44,7 +44,7 @@ Note: I haven't put the API credentials I used as they get disabled when posted 
 ## Model File
 Due to file size limitations, the trained model is hosted on Google Drive. You can download it [here](https://drive.google.com/drive/folders/1I2ULcdcOv2-7HmrtC4vJ4USKtVUDubx7?usp=drive_link).
 
-Click on the title "trained_model_stuff" and download the zip folder. After downloading, place the file in the same directory as the py file.
+Click on the title "trained_model_stuff" and download the zip folder. After downloading, place the folder in the same directory as the py file.
 
 
 ## Usage
