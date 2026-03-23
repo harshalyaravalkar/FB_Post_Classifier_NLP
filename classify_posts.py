@@ -47,15 +47,22 @@ def filter_and_update_gsheet(sheet_id, range_name):
     set_with_dataframe(sheet, filtered_data)
 
 # Load the trained model and tokenizer
-model_save_path = r"trained_model_stuff/model_directory"
-tokenizer_save_path = r"trained_model_stuff/tokenizer_directory"
-model = DistilBertForSequenceClassification.from_pretrained(model_save_path)
-tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_save_path)
+model_save_path = r"trained_model_stuff\model_directory"
+tokenizer_save_path = r"trained_model_stuff\tokenizer_directory"
+model = DistilBertForSequenceClassification.from_pretrained(
+    model_save_path,
+    local_files_only=True,
+    use_safetensors=True
+)
+tokenizer = DistilBertTokenizer.from_pretrained(
+    tokenizer_save_path,
+    local_files_only=True
+)
 
 
 # Load the new data from Google Sheets
-sheet_id = "1wmcMy_Z7nGcnSVhvLN4TFRbAMaE58H5YO9-nVWcYdEk"  # Replace with your Google Sheet ID
-input_range_name = "Sheet4"  # Replace with the sheet name or range name where your data is
+sheet_id = "1P9kWFKa7v5UfQSmYgwiolTiqehLsdTcerBYv2poZFNM"  # Replace with your Google Sheet ID
+input_range_name = "Sheet1"  # Replace with the sheet name or range name where your data is
 
 new_df = load_data_from_gsheet(sheet_id, input_range_name)
 new_df.columns = new_df.columns.str.strip()
@@ -76,13 +83,12 @@ class FBPostsDataset(Dataset):
 
     def __getitem__(self, index):
         text = self.texts[index]
-        encoding = self.tokenizer.encode_plus(
+        encoding = self.tokenizer(
             text,
             add_special_tokens=True,
             max_length=self.max_len,
             padding='max_length',
             truncation=True,
-            return_attention_mask=True,
             return_tensors='pt',
         )
 
@@ -120,7 +126,7 @@ predicted_labels = [label_map[pred] for pred in new_predictions]
 
 # Save predictions to a new Google Sheet
 new_df['Predicted Label'] = predicted_labels
-output_range_name = "Sheet3"  # Replace with the sheet name or range name where you want to save the predictions
+output_range_name = "Sheet2"  # Replace with the sheet name or range name where you want to save the predictions
 save_data_to_gsheet(sheet_id, output_range_name, new_df)
 
 # Filter rows where 'Predicted Label' is 'Lead' and delete rows where it is 'Other'
